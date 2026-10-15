@@ -60,10 +60,10 @@ dist/                 tsc output for plain Node (`bun run build`; gitignored)
 `dist/` (`default`). Node consumers need `bun run build` first; `dist/` is gitignored, so a `github:` install for
 Node needs a decision (commit `dist/`, or a `prepare` script). Bun consumers need nothing.
 
-sal-agent depends on a packed tarball for now (`bun pm pack` → `sal-stt-0.1.0.tgz`, gitignored): a `file:../sal-stt`
-folder dependency fails because bun copies the folder's `.git` and the copy of `.git/config` is denied. After a
-change here: `bun pm pack`, then in sal-agent `bun remove sal-stt && bun add sal-stt@file:../sal-stt/sal-stt-0.1.0.tgz`.
-The `github:dested/sal-stt` dependency replaces this once the repo is pushed.
+Apps install `github:dested/sal-stt` (the repo is public: bun 1.3.10 gets a 404 on a private `github:` repo, even
+with GITHUB_TOKEN set). After a change here: push, then `bun update sal-stt` in the app. To try an unpushed change,
+`bun pm pack` and point the app at `file:../sal-stt/sal-stt-0.1.0.tgz` (gitignored); a `file:../sal-stt` folder
+dependency fails because bun copies the folder's `.git` and the copy of `.git/config` is denied.
 
 ## Test
 
