@@ -1,0 +1,41 @@
+{
+  "name": "sal-stt",
+  "version": "0.1.0",
+  "description": "One speech-to-text API for Sal's apps: node (sherpa-onnx + Parakeet) today; browser, server, Expo next",
+  "private": true,
+  "type": "module",
+  "bin": {
+    "sal-stt": "bin/sal-stt.ts"
+  },
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "bun": "./src/index.ts",
+      "default": "./dist/index.js"
+    },
+    "./node": {
+      "types": "./src/node/index.ts",
+      "bun": "./src/node/index.ts",
+      "default": "./dist/node/index.js"
+    }
+  },
+  "files": [
+    "src",
+    "bin",
+    "dist"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit -p .",
+    "build": "tsc -p tsconfig.build.json",
+    "test": "bun test",
+    "fetch": "bun bin/sal-stt.ts fetch"
+  },
+  "dependencies": {
+    "sherpa-onnx-node": "1.13.8"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.4.2",
+    "@types/node": "^22",
+    "typescript": "^7.0.2"
+  }
+}
